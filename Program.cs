@@ -10,7 +10,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
             "http://localhost:3000",
-            "https://fullstackcrudreact.netlify.app"  // ✅ make sure this matches your actual deployed Netlify URL
+            "https://fullstackcrudreact.netlify.app"  // ✅ your deployed frontend
         )
         .AllowAnyHeader()
         .AllowAnyMethod();
@@ -26,7 +26,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     )
 );
 
-// Swagger setup (optional for development)
+// Swagger setup
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -39,7 +39,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// ✅ Apply CORS policy before routing
+// ⚠️ Move CORS middleware to the top of pipeline
 app.UseCors("AllowReactApp");
 
 app.UseHttpsRedirection();
