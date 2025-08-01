@@ -42,7 +42,7 @@ if (app.Environment.IsDevelopment())
 // ⚠️ Move CORS middleware to the top of pipeline
 app.UseCors("AllowReactApp");
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
