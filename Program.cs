@@ -4,18 +4,17 @@ using UserAPI.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // ✅ Add CORS policy for React (localhost and Netlify)
+// 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
     {
-        policy.WithOrigins(
-            "http://localhost:3000",
-            "https://fullstackcrudreact.netlify.app"  // ✅ your deployed frontend
-        )
-        .AllowAnyHeader()
-        .AllowAnyMethod();
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
     });
 });
+
 
 // ✅ Add services
 builder.Services.AddControllers();
